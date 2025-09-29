@@ -6,15 +6,21 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: blog-app
+      app: bloggingapp
   template:
     metadata:
       labels:
-        app: blog-app
+        app: bloggingapp
     spec:
       containers:
       - name: bloggingapp
         image: farhanawan99/bloggingapp:latest
         ports:
         - containerPort: 8080
+        envFrom:
+          - configMapRef:
+              name: bloggingapp-config
+          - secretRef:
+              name: bloggingapp-secret
+
 
